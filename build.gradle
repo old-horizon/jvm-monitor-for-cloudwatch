@@ -1,0 +1,25 @@
+plugins {
+    id 'com.github.johnrengelman.shadow' version '5.0.0'
+    id 'java-library'
+}
+
+repositories {
+    jcenter()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    api 'com.amazonaws:aws-java-sdk-cloudwatch:1.11.524'
+}
+
+jar {
+    manifest {
+        attributes 'Premain-Class': 'com.github.old_horizon.jvm.monitor.Agent'
+    }
+}
